@@ -1,3 +1,3 @@
 # -Ogrenci-Bilgi-Sistemi
 
-sdfsdf
+  Bu projede Veri Tabanı Yönetim Sistemleri ödevi için bir ogrenci
