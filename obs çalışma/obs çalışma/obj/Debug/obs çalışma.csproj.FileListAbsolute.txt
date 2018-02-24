@@ -1,0 +1,20 @@
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\obs çalışma.exe.config
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\obs çalışma.exe
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\obs çalışma.pdb
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\EntityFramework.dll
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\EntityFramework.xml
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs çalışma.csprojResolveAssemblyReference.cache
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.ders_ac.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.ders_ekle.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.not_girme.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.ogretmen_menu.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.ogr_menu.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.Properties.Resources.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs çalışma.csproj.GenerateResource.Cache
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs çalışma.csproj.CoreCompileInputs.cache
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs çalışma.exe
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs çalışma.pdb
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.giris_ekran.resources
+C:\Users\YASİR\Source\Repos\obs çalışma\obs çalışma\obj\Debug\obs_çalışma.yeni_kayit.resources

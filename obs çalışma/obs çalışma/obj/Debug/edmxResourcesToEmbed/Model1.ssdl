@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OBSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bolum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="baskan_id" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ders">
+    <Key>
+      <PropertyRef Name="kod" />
+    </Key>
+    <Property Name="kod" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kredi" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+    <Property Name="ogretmen_id" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OBS.dbo.ders_alir' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ders_alir">
+    <Key>
+      <PropertyRef Name="ogrenci_no" />
+      <PropertyRef Name="ders_kod" />
+    </Key>
+    <Property Name="ogrenci_no" Type="nchar" MaxLength="9" Nullable="false" />
+    <Property Name="ders_kod" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="vize_not" Type="decimal" Precision="3" Scale="1" />
+    <Property Name="final_not" Type="decimal" Precision="3" Scale="1" />
+  </EntityType>
+  <EntityType Name="ogrenci">
+    <Key>
+      <PropertyRef Name="no" />
+    </Key>
+    <Property Name="no" Type="nchar" MaxLength="9" Nullable="false" />
+    <Property Name="tc" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="danisman_id" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="bolum_id" Type="nchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ogretmen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bolum_id" Type="nchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_bolum_ogretmen">
+    <End Role="ogretmen" Type="Self.ogretmen" Multiplicity="1" />
+    <End Role="bolum" Type="Self.bolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ogretmen">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bolum">
+        <PropertyRef Name="baskan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ders_alir_ders">
+    <End Role="ders" Type="Self.ders" Multiplicity="1" />
+    <End Role="ders_alir" Type="Self.ders_alir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ders">
+        <PropertyRef Name="kod" />
+      </Principal>
+      <Dependent Role="ders_alir">
+        <PropertyRef Name="ders_kod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ders_alir_ogrenci">
+    <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="1" />
+    <End Role="ders_alir" Type="Self.ders_alir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ogrenci">
+        <PropertyRef Name="no" />
+      </Principal>
+      <Dependent Role="ders_alir">
+        <PropertyRef Name="ogrenci_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ders_ogretmen">
+    <End Role="ogretmen" Type="Self.ogretmen" Multiplicity="1" />
+    <End Role="ders" Type="Self.ders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ogretmen">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ders">
+        <PropertyRef Name="ogretmen_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ogrenci_bolum">
+    <End Role="bolum" Type="Self.bolum" Multiplicity="1" />
+    <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bolum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ogrenci">
+        <PropertyRef Name="bolum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ogrenci_ogretmen">
+    <End Role="ogretmen" Type="Self.ogretmen" Multiplicity="1" />
+    <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ogretmen">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ogrenci">
+        <PropertyRef Name="danisman_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ogretmen_bolum">
+    <End Role="bolum" Type="Self.bolum" Multiplicity="1" />
+    <End Role="ogretmen" Type="Self.ogretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bolum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ogretmen">
+        <PropertyRef Name="bolum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="OBSModelStoreContainer">
+    <EntitySet Name="bolum" EntityType="Self.bolum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ders" EntityType="Self.ders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ogrenci" EntityType="Self.ogrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ogretmen" EntityType="Self.ogretmen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ders_alir" EntityType="Self.ders_alir" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_bolum_ogretmen" Association="Self.FK_bolum_ogretmen">
+      <End Role="ogretmen" EntitySet="ogretmen" />
+      <End Role="bolum" EntitySet="bolum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ders_alir_ders" Association="Self.FK_ders_alir_ders">
+      <End Role="ders" EntitySet="ders" />
+      <End Role="ders_alir" EntitySet="ders_alir" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ders_alir_ogrenci" Association="Self.FK_ders_alir_ogrenci">
+      <End Role="ogrenci" EntitySet="ogrenci" />
+      <End Role="ders_alir" EntitySet="ders_alir" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ders_ogretmen" Association="Self.FK_ders_ogretmen">
+      <End Role="ogretmen" EntitySet="ogretmen" />
+      <End Role="ders" EntitySet="ders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ogrenci_bolum" Association="Self.FK_ogrenci_bolum">
+      <End Role="bolum" EntitySet="bolum" />
+      <End Role="ogrenci" EntitySet="ogrenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ogrenci_ogretmen" Association="Self.FK_ogrenci_ogretmen">
+      <End Role="ogretmen" EntitySet="ogretmen" />
+      <End Role="ogrenci" EntitySet="ogrenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ogretmen_bolum" Association="Self.FK_ogretmen_bolum">
+      <End Role="bolum" EntitySet="bolum" />
+      <End Role="ogretmen" EntitySet="ogretmen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
